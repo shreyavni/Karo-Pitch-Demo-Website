@@ -38,6 +38,7 @@
             color: var(--text-main);
             overflow-x: hidden;
             line-height: 1.6;
+            cursor: none; /* Hide default cursor for custom cursor */
         }
 
         h1, h2, h3, .logo, .counter {
@@ -103,9 +104,9 @@
             }
         }
 
-        /* Buttons & Flex Groups */
+        /* Buttons & Flex Groups - FIXED ALIGNMENT FOR LAPTOPS */
         .btn-group { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
-        @media (min-width: 768px) { .btn-group { justify-content: flex-start; gap: 20px; } }
+        @media (min-width: 768px) { .btn-group { gap: 20px; justify-content: center; } } /* Fix applied here */
 
         .btn {
             padding: 16px 35px; font-size: clamp(1rem, 1.5vw, 1.1rem); font-weight: 700;
@@ -159,7 +160,7 @@
         .marquee-inner { display: flex; white-space: nowrap; font-size: clamp(1.2rem, 3vw, 2rem); font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
         .marquee-inner span { padding: 0 clamp(20px, 4vw, 40px); }
 
-        /* Auto-Fit Fluid Grids (Perfect for ALL screen sizes) */
+        /* Auto-Fit Fluid Grids */
         .grid-4, .grid-3, .grid-2 { display: grid; gap: 30px; margin-top: clamp(40px, 6vw, 60px); }
         .grid-4 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
         .grid-3 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
@@ -197,10 +198,12 @@
         }
 
         /* Badges */
-        .badge-container { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 30px; }
+        .badge-container { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 30px; justify-content: center; } 
+        @media (min-width: 768px) { .badge-container { justify-content: flex-start; } }
+
         .badge { 
             padding: 12px 25px; background: var(--surface); border-radius: 50px; font-weight: 600; font-size: clamp(0.9rem, 1vw, 1rem);
-            border: 1px solid rgba(255,255,255,0.1); color: white; transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.1); color: white; transition: all 0.3s ease; cursor: none;
         }
         .badge:hover {
             background: var(--brand-red); transform: scale(1.1) rotate(-2deg);
@@ -226,13 +229,12 @@
             .hero-btns { flex-direction: column; }
             .final-cta .btn-group { flex-direction: column; width: 100%; }
             .about-text { text-align: center; }
-            .badge-container { justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. Custom Magnetic Cursor Elements -->
+    <!-- Custom Magnetic Cursor Elements -->
     <div class="cursor-dot"></div>
     <div class="cursor-ring"></div>
 
@@ -259,8 +261,9 @@
         
         <div class="container hero-content">
             <h1 class="hero-title">
-                <span class="touch-word interactive-element">Pitch</span> Your <span class="touch-word neon-text interactive-element">Startup</span><br>
-                To India’s Top <span class="touch-word interactive-element">Investors.</span>
+                <!-- Added &nbsp; to prevent text merging on wrapping -->
+                <span class="touch-word interactive-element">Pitch</span>&nbsp;Your&nbsp;<span class="touch-word neon-text interactive-element">Startup</span><br>
+                To&nbsp;India’s&nbsp;Top&nbsp;<span class="touch-word interactive-element">Investors.</span>
             </h1>
             <p class="hero-desc">Karo Pitch is a platform where founders from across India can <span class="touch-word interactive-element">showcase</span> their vision, <span class="touch-word interactive-element">pitch</span> their startups, and <span class="touch-word interactive-element">raise</span> funding.</p>
             <div class="btn-group hero-btns" style="justify-content: center;">
@@ -270,7 +273,7 @@
         </div>
     </section>
 
-    <!-- 2. INFINITE MARQUEE SECTION -->
+    <!-- INFINITE MARQUEE SECTION -->
     <div class="marquee-container">
         <div class="marquee-inner">
             <span>GET FUNDED ✦ FIND MENTORS ✦ SCALE RAPIDLY ✦ PITCH LIVE ✦ GROW TOGETHER ✦ </span>
@@ -289,7 +292,7 @@
                 </div>
             </div>
 
-            <!-- 3. NUMBER COUNTING MILESTONES -->
+            <!-- NUMBER COUNTING MILESTONES -->
             <div class="grid-3 gsap-fade-up" style="margin-top: 60px; padding-top: 60px; border-top: 1px solid rgba(255,255,255,0.05); text-align: center;">
                 <div>
                     <h3>$<span class="counter neon-text" data-target="25">0</span>M+</h3>
@@ -310,11 +313,10 @@
     <!-- HOW IT WORKS -->
     <section id="how-it-works">
         <div class="container">
-            <h2 class="gsap-fade-up" style="text-align: center;"><span class="touch-word interactive-element">How</span> <span class="touch-word interactive-element">It</span> <span class="neon-text touch-word interactive-element">Works</span></h2>
+            <h2 class="gsap-fade-up" style="text-align: center;"><span class="touch-word interactive-element">How</span>&nbsp;<span class="touch-word interactive-element">It</span>&nbsp;<span class="neon-text touch-word interactive-element">Works</span></h2>
             <div class="grid-4">
                 <div class="card step-card">
                     <div class="step-icon"><i class="fa-solid fa-file-arrow-up"></i></div>
-                    <!-- 4. HACKER SCRAMBLE APPLIED TO H3 -->
                     <h3 class="scramble">1. Apply</h3>
                     <p>Apply with your comprehensive pitch deck and startup details.</p>
                 </div>
@@ -340,8 +342,8 @@
     <!-- WHO CAN APPLY -->
     <section id="who-can-apply" style="background: rgba(255,255,255,0.02);">
         <div class="container">
-            <h2 class="gsap-fade-up"><span class="touch-word interactive-element">Who</span> Can <span class="neon-text touch-word interactive-element">Apply?</span></h2>
-            <p class="gsap-fade-up">If you are building something valuable, we want to hear from you. We welcome diverse sectors from across India.</p>
+            <h2 class="gsap-fade-up" style="text-align: center;"><span class="touch-word interactive-element">Who</span> Can <span class="neon-text touch-word interactive-element">Apply?</span></h2>
+            <p class="gsap-fade-up" style="text-align: center;">If you are building something valuable, we want to hear from you. We welcome diverse sectors from across India.</p>
             
             <div class="badge-container">
                 <div class="badge gsap-badge interactive-element"><i class="fa-solid fa-box-open"></i> D2C Brands</div>
@@ -369,7 +371,7 @@
     <!-- FEATURED STARTUPS -->
     <section id="startups" style="background: rgba(255,255,255,0.02);">
         <div class="container">
-            <h2 class="gsap-fade-up">Featured <span class="neon-text touch-word interactive-element">Startups</span></h2>
+            <h2 class="gsap-fade-up" style="text-align: center;">Featured <span class="neon-text touch-word interactive-element">Startups</span></h2>
             <div class="grid-3">
                 <div class="card startup-card gsap-st-card">
                     <span class="category-tag">D2C Brand</span>
